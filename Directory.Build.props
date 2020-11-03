@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Fernando Escolar</Authors>
+	  <Company>Developerro's</Company>
+    <Copyright>Copyright © 2020 Developerro's</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>9.0</LangVersion>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cac.Default\Cac.Default.csproj" />
+    <ProjectReference Include="..\Cac.Expressions\Cac.Expressions.csproj" />
+    <ProjectReference Include="..\Cac.Extensibility\Cac.Extensibility.csproj" />
+    <ProjectReference Include="..\Cac.Plugins\Cac.Plugins.csproj" />
+    <ProjectReference Include="..\Cac.Yaml.Parser\Cac.Yaml.csproj" />
+  </ItemGroup>
+
+</Project>

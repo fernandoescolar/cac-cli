@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Cac.Cli</RootNamespace>
+    <AssemblyName>cac-cli</AssemblyName>
+    <ToolCommandName>cac</ToolCommandName>
+    <Description>Configuration as code application</Description>
+    <ExcludeAssets>runtime</ExcludeAssets>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cac\Cac.csproj" />
+  </ItemGroup>
+
+</Project>

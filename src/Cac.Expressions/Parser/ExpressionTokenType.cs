@@ -1,0 +1,37 @@
+﻿namespace Cac.Expressions.Parser
+{
+    public enum ExpressionTokenType
+    {
+        Unknown,
+        Null,
+        Boolean,
+        Integer,
+        Float,
+        StringValue,
+        OpenParenthesis,
+        CloseParenthesis,
+        OpenBracket,
+        CloseBracket,
+        Comma,
+        Dot,
+        AndFunction,
+        OrFunction,
+        NotFunction,
+        XorFunction,
+        EqualFunction,
+        NotEqualFunction,
+        GreaterOrEqualFunction,
+        GreaterThanFunction,
+        LessOrEqualFunction,
+        LessThanFunction,
+        Parameters,
+        Variables,
+        Providers,
+        In,
+        NotIn,
+        Join,
+        Format,
+        StartsWith,
+        EndsWith
+    }
+}

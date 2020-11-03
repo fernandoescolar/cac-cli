@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cac.Extensibility\Cac.Extensibility.csproj" />
+    <ProjectReference Include="..\Cac.Yaml.Parser\Cac.Yaml.csproj" />
+  </ItemGroup>
+
+</Project>

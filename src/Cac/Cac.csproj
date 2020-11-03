@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>cac</AssemblyName>
+    <Description>Configuration as code application</Description>
+    <ExcludeAssets>runtime</ExcludeAssets>
+    <RootNamespace>Cac</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cac.Extensibility\Cac.Extensibility.csproj" />
+    <ProjectReference Include="..\Cac.Interpretation\Cac.Interpretation.csproj" />
+  </ItemGroup>
+</Project>

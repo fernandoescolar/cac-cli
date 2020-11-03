@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>Cac.Sample</PackageId>
+    <IsPackable>true</IsPackable>
+    <ExcludeAssets>runtime</ExcludeAssets>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Cac.Extensibility\Cac.Extensibility.csproj" />
+  </ItemGroup>
+
+</Project>
