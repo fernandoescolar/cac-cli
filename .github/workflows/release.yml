@@ -74,7 +74,7 @@ jobs:
           name: nupkg
       - name: Publish NuGet packages
         run: |
-          dotnet nuget push ./nupkg/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push ./nupkg/**/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
   release:
     needs: [ build, pack ]
     runs-on: ubuntu-latest

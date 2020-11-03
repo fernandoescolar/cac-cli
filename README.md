@@ -18,7 +18,7 @@ You can check latests releases in the [releases page](https://github.com/fernand
 
 Install latest version using `dotnet` client:
 
-> dotnet tool install --global cac-cli --version 0.0.1-beta1
+> dotnet tool install --global cac-cli --version 0.0.1-beta
 
 Create a new file called `file.yml` with the content bellow:
 
@@ -28,7 +28,7 @@ parameters:
 
 packages:
 - name: cac.sample
-  version: 0.0.1-beta1
+  version: 0.0.1-beta
 
 providers:
 - sample: sample
@@ -57,7 +57,7 @@ You should find the output bellow in your terminal:
 
 ```bash
 packages
-  Downloading: cac.sample v0.0.1-beta1
+  Downloading: cac.sample v0.0.1-beta
 plan
   Name to write: dev1
   Name to write: dev2
