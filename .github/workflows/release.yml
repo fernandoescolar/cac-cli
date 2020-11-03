@@ -109,9 +109,8 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      steps:
-        - uses: geekyeggo/delete-artifact@v1
-          with:
-            name: |
-              zip
-              nupkg
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: |
+            zip
+            nupkg
