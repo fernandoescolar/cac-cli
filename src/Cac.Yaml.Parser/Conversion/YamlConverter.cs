@@ -43,10 +43,10 @@ namespace Cac.Yaml.Conversion
                 return sequence;
             }
 
-            var propertiesDictionary = o.GetType().GetProperties(BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.NonPublic)
+            var propertiesDictionary = o.GetType().GetProperties()
                                         .Where(x => x.GetCustomAttribute<YamlPropertyAttribute>() != null)
                                         .ToDictionary(x => x.GetCustomAttribute<YamlPropertyAttribute>().Name, x => x.GetValue(o));
-            var fieldsDictionary = o.GetType().GetFields(BindingFlags.GetField | BindingFlags.Public | BindingFlags.NonPublic)
+            var fieldsDictionary = o.GetType().GetFields()
                                     .Where(x => x.GetCustomAttribute<YamlPropertyAttribute>() != null)
                                     .ToDictionary(x => x.GetCustomAttribute<YamlPropertyAttribute>().Name, x => x.GetValue(o));
 

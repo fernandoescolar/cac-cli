@@ -1,5 +1,6 @@
 ﻿using Cac.Exceptions;
 using System;
+using System.Globalization;
 
 namespace Cac.Yaml.Mapping
 {
@@ -35,18 +36,18 @@ namespace Cac.Yaml.Mapping
 
         public static bool TryMap(this YamlScalarObject yaml, Type type, out object o)
         {
+            if (type.FullName == typeof(object).FullName) return yaml.TryMapAsObject(out o);
             if (yaml.YamlScalarType == YamlScalarType.Null && type.IsNullable()) { o = null; return true; }
             if (type.Is<bool>() && yaml.YamlScalarType == YamlScalarType.Boolean) { o = bool.TryParse(yaml.Value, out var result) && result; return true; }
             if (type.Is<short>() && yaml.YamlScalarType == YamlScalarType.Int) { o = short.TryParse(yaml.Value, out var result) ? result : default; return true; }
             if (type.Is<int>() && yaml.YamlScalarType == YamlScalarType.Int) { o = int.TryParse(yaml.Value, out var result) ? result : default; return true; }
             if (type.Is<long>() && yaml.YamlScalarType == YamlScalarType.Int) { o = long.TryParse(yaml.Value, out var result) ? result : default; return true; }
-            if (type.Is<float>() && yaml.YamlScalarType == YamlScalarType.Float) { o = float.TryParse(yaml.Value, out var result) ? result : default; return true; }
-            if (type.Is<double>() && yaml.YamlScalarType == YamlScalarType.Float) { o = double.TryParse(yaml.Value, out var result) ? result : default; return true; }
-            if (type.Is<decimal>() && yaml.YamlScalarType == YamlScalarType.Float) { o = decimal.TryParse(yaml.Value, out var result) ? result : default; return true; }
+            if (type.Is<float>() && yaml.YamlScalarType == YamlScalarType.Float) { o = float.TryParse(yaml.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result) ? result : default; return true; }
+            if (type.Is<double>() && yaml.YamlScalarType == YamlScalarType.Float) { o = double.TryParse(yaml.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result) ? result : default; return true; }
+            if (type.Is<decimal>() && yaml.YamlScalarType == YamlScalarType.Float) { o = decimal.TryParse(yaml.Value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result) ? result : default; return true; }
             if (type.Is<DateTime>() && yaml.YamlScalarType == YamlScalarType.DateTime) { o = DateTime.TryParse(yaml.Value, out var result) ? result : default; return true; }
             if (type.Is<Version>() && yaml.YamlScalarType == YamlScalarType.Version) { o = Version.TryParse(yaml.Value, out var result) ? result : default; return true; }
             if (type.Is<string>()) { o = yaml.Value; return true; }
-            if (type.FullName == typeof(object).FullName) return yaml.TryMapAsObject(out o);
 
             o = default;
             return false;

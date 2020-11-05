@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Cac.Yaml
 {
@@ -24,15 +25,15 @@ namespace Cac.Yaml
         {
         }
 
-        public YamlScalarObject(float value) : this(value.ToString(), YamlScalarType.Float)
+        public YamlScalarObject(float value) : this(value.ToString("G", CultureInfo.InvariantCulture), YamlScalarType.Float)
         {
         }
 
-        public YamlScalarObject(double value) : this(value.ToString(), YamlScalarType.Float)
+        public YamlScalarObject(double value) : this(value.ToString("G", CultureInfo.InvariantCulture), YamlScalarType.Float)
         {
         }
 
-        public YamlScalarObject(decimal value) : this(value.ToString(), YamlScalarType.Float)
+        public YamlScalarObject(decimal value) : this(value.ToString("G", CultureInfo.InvariantCulture), YamlScalarType.Float)
         {
         }
 
