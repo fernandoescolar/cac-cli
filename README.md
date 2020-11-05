@@ -31,7 +31,7 @@ parameters:
   environment:
 
 packages:
-- name: cac.sample
+- name: Cac.Sample
   version: 0.0.1-beta
 
 providers:
