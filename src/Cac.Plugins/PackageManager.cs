@@ -51,8 +51,8 @@ namespace Cac.Plugins
         {
             _loadedDependencies = new List<string>();
             var destinationFolderPath = Path.Combine(_packagesFolder, packageId, version);
-            var destinationFilePath = Path.Combine(destinationFolderPath, $"{packageId}.dll");
-            if (Directory.Exists(destinationFolderPath) && File.Exists(destinationFilePath))
+            var destinationFilePath = SearchDestinationFilePath(packageId, destinationFolderPath);
+            if (File.Exists(destinationFilePath))
             {
                 return destinationFilePath;
             }
@@ -65,7 +65,21 @@ namespace Cac.Plugins
                 File.Delete(extensibilityDll);
             }
 
-            return destinationFilePath;
+            return SearchDestinationFilePath(packageId, destinationFolderPath);
+        }
+
+        private static string SearchDestinationFilePath(string packageId, string destinationFolderPath)
+        {
+            var fileName = $"{packageId}.dll";
+            if (Directory.Exists(destinationFolderPath))
+            {
+                var files = Directory.GetFiles(destinationFolderPath);
+                var file = files.FirstOrDefault(x => x.EndsWith(fileName, StringComparison.InvariantCultureIgnoreCase));
+                if (file != null)
+                    fileName = Path.GetFileName(file);
+            }
+            
+            return Path.Combine(destinationFolderPath, fileName);
         }
 
         private async Task InstallAsync(string destinationFolderPath, string packageId, string version, string maxFramework, CancellationToken cancellationToken)
