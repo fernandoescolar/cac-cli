@@ -4,7 +4,7 @@ namespace Cac.Exceptions
 {
     public class UnexpectedCharacterException : Exception
     {
-        private const string UnexpectedCharacterMessage = "Unexpected character found";
+        private const string UnexpectedCharacterMessage = "Unexpected character found: ";
 
         public UnexpectedCharacterException(int line, int column, string value) : this(line, column, value, default)
         {
@@ -14,7 +14,7 @@ namespace Cac.Exceptions
         {
         }
 
-        public UnexpectedCharacterException(int line, int column, string value, Exception innerException) : this(UnexpectedCharacterMessage, line, column, value, innerException)
+        public UnexpectedCharacterException(int line, int column, string value, Exception innerException) : this(UnexpectedCharacterMessage + value, line, column, value, innerException)
         {
         }
 
