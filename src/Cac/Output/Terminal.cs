@@ -18,15 +18,14 @@ namespace Cac.Output
 
         private void Write(string message, ConsoleColor color, ConsoleColor backColor)
         {
-            var cColor = Console.ForegroundColor;
-            var cBackColor = Console.BackgroundColor;
-            Console.ForegroundColor = color;
-            Console.BackgroundColor = backColor;
-            Console.Write(message);
-            Console.ForegroundColor = cColor;
-            Console.BackgroundColor = cBackColor;
-
             _lastChar = message.LastOrDefault();
+
+            if (Console.BackgroundColor != backColor)
+                message = message.Backgroud(backColor);
+            if (Console.ForegroundColor != color)
+                message = message.Foreground(color);
+
+            Console.Write(message);
         }
 
         private static string CreateSpacedMessage(string message, string spaces)
