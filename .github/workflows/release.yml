@@ -108,6 +108,7 @@ jobs:
   npm:
     needs: release
     runs-on: ubuntu-latest
+    steps:
       - run: |
           GITHUB_VERSION="${{ github.ref }}"
           GITHUB_VERSION=(${GITHUB_VERSION##*/})
