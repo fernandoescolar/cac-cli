@@ -1,0 +1,28 @@
+{
+  "name": "cac-cli",
+  "version": "0.0.1-beta",
+  "description": "Configuration as code application",
+  "author": "Fernando Escolar",
+  "license": "CC-BY-SA-4.0",
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fernandoescolar/cac-cli.git",
+    "directory": "src/npm"
+  },
+  "scripts": {
+    "clean": "node clean.js",
+    "install": "npm run clean && node install.js"
+  },
+  "main": "index.js",
+  "bin": {
+    "cac": "bin/cac.js"
+  },
+  "dependencies": {
+    "cac-cli": "^0.0.1-beta",
+    "glob": "^7.1.6",
+    "shelljs": "^0.8.4",
+    "superagent": "^6.1.0",
+    "unzipper": "^0.10.11"
+  }
+}

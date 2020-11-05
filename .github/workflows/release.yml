@@ -105,8 +105,21 @@ jobs:
           files: 'zip/*.zip;nupkg/*.nupkg'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ steps.vars.outputs.tag }}
-  cleanup:
+  npm:
     needs: release
+    runs-on: ubuntu-latest
+      - run: |
+          GITHUB_VERSION="${{ github.ref }}"
+          GITHUB_VERSION=(${GITHUB_VERSION##*/})
+          RELEASE_VERSION="${GITHUB_VERSION//v}"
+          npm version $RELEASE_VERSION
+      - run: |
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    steps:
+  cleanup:
+    needs: npm
     runs-on: ubuntu-latest
     steps:
       - uses: geekyeggo/delete-artifact@v1

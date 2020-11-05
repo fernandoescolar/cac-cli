@@ -16,9 +16,13 @@ You can check latests releases in the [releases page](https://github.com/fernand
 
 ## Hello world
 
-Install latest version using `dotnet` client:
+Install latest version using `dotnet` client: (**recomended**)
 
 > dotnet tool install --global cac-cli --version 0.0.1-beta
+
+or using `npm`:
+
+> npm install -g cac-cli@0.0.1-beta
 
 Create a new file called `file.yml` with the content bellow:
 
