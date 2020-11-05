@@ -6,11 +6,13 @@ namespace Cac.Tokenization
     {
         private readonly Regex _regex;
         private readonly string _returnsToken;
+        private readonly bool _wholeWord;
 
-        public TokenDefinition(string returnsToken, string regexPattern)
+        public TokenDefinition(string returnsToken, string regexPattern, bool wholeWord = false)
         {
             _regex = new Regex(regexPattern, RegexOptions.IgnoreCase);
             _returnsToken = returnsToken;
+            _wholeWord = wholeWord;
         }
 
         public TokenMatch Match(string inputString)
@@ -34,6 +36,11 @@ namespace Cac.Tokenization
                     remainingText = inputString.Substring(value.Length);
                 }
 
+                if (_wholeWord && HasNotWholeWordRemaingText(remainingText[0]))
+                {
+                    return new TokenMatch() { IsMatch = false };
+                }
+
                 return new TokenMatch()
                 {
                     IsMatch = true,
@@ -46,6 +53,11 @@ namespace Cac.Tokenization
             {
                 return new TokenMatch() { IsMatch = false };
             }
+        }
+
+        private bool HasNotWholeWordRemaingText(char c)
+        {
+            return char.IsLetterOrDigit(c) || c == '_';
         }
     }
 }
