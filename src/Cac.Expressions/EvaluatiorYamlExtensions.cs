@@ -1,13 +1,12 @@
 ﻿using Cac.Exceptions;
-using Cac.Expressions;
 using Cac.Yaml;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Cac.Interpretation
+namespace Cac.Expressions
 {
-    public static class EvaluationExtensions
+    public static class EvaluatiorYamlExtensions
     {
         private static readonly Regex _regex = new Regex("\\${{[^}}]*}}", RegexOptions.IgnoreCase);
 

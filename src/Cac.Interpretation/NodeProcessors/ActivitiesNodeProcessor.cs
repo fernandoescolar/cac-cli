@@ -1,5 +1,6 @@
 ﻿using Cac.Default;
 using Cac.Exceptions;
+using Cac.Expressions;
 using Cac.Extensibility;
 using Cac.Output;
 using Cac.Yaml;
@@ -26,7 +27,15 @@ namespace Cac.Interpretation.NodeProcessors
             var tasks = new List<Task<IEnumerable<ICacCommand>>>();
             foreach (var entry in sequence)
             {
-                tasks.Add(PlanActivityAsync(entry, context));
+                var task = PlanActivityAsync(entry, context);
+                if (IsSyncActivity(entry))
+                {
+                    task.Wait();
+                }
+                else
+                {
+                    tasks.Add(task);
+                }
             }
 
             Task.WaitAll(tasks.ToArray());
@@ -104,5 +113,7 @@ namespace Cac.Interpretation.NodeProcessors
             output.Verbose.Write(displayName, ConsoleColor.Green);
             output.Verbose.WriteLine("`");
         }
+
+        private static bool IsSyncActivity(IYamlObject entry) => entry is YamlMappingObject m && m.Children.ContainsKey("sync") && m.MapProperty<bool>("sync");
     }
 }

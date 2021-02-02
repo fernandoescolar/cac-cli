@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cac.Expressions\Cac.Expressions.csproj" />
     <ProjectReference Include="..\Cac.Extensibility\Cac.Extensibility.csproj" />
     <ProjectReference Include="..\Cac.Yaml.Parser\Cac.Yaml.csproj" />
   </ItemGroup>
