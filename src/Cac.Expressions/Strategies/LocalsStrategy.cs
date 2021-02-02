@@ -36,16 +36,23 @@ namespace Cac.Expressions.Strategies
             var result = context.Locals[token.Value];
             do
             {
-                var dotToken = context.Stack.NextToken();
-                if (!dotToken.Is(ExpressionTokenType.Dot))
+                var hasBraket = false;
+                var bracket = context.Stack.NextToken();
+                hasBraket = bracket.Is(ExpressionTokenType.OpenBracket);
+
+                if (!hasBraket)
                 {
-                    context.Stack.StepBack();
-                    return result;
+                    var dotToken = bracket;
+                    if (!dotToken.Is(ExpressionTokenType.Dot))
+                    {
+                        context.Stack.StepBack();
+                        return result;
+                    }
                 }
 
                 var name = context.Stack.NextToken();
                 if (InvalidTokenTypes.Contains(token.GetTokenType<ExpressionTokenType>()))
-                    throw new UnexpectedTypeException($"Expected string, found `{dotToken.TokenType}`", dotToken.Line, dotToken.Column, dotToken.Value);
+                    throw new UnexpectedTypeException($"Expected string, found `{bracket.TokenType}`", bracket.Line, bracket.Column, bracket.Value);
 
                 if (result is YamlMappingObject m)
                 {
@@ -57,6 +64,15 @@ namespace Cac.Expressions.Strategies
                 else
                 {
                     throw new UnexpectedTypeException($"Expected `YamlMappingObject` found `{result.GetType().Name}`", result.Line, result.Column);
+                }
+
+                if (hasBraket)
+                {
+                    bracket = context.Stack.NextToken();
+                    if (!bracket.Is(ExpressionTokenType.CloseBracket))
+                    {
+                        throw new UnexpectedTypeException($"Expected CloseBracket `]` found `{result.GetType().Name}`", result.Line, result.Column);
+                    }
                 }
             } while (true);
         }
