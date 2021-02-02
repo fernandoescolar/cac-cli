@@ -64,7 +64,7 @@ namespace Cac.Yaml.Parser
 
         protected override string GetUnknownTokenDelimiters()
         {
-            return " :,;{}[]()~\n\r#\"'";
+            return " :,{}[]()~\n\r#\"'";
         }
     }
 }
